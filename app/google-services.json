@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "261009118350",
+    "project_id": "find-your-event-2aa11",
+    "storage_bucket": "find-your-event-2aa11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261009118350:android:43a58902a9708de2af25df",
+        "android_client_info": {
+          "package_name": "pl.cieszk.findyourevent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFvKUTSWiJiNKbPGRBLKfQrGxsUPfqw2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
