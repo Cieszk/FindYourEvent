@@ -1,4 +1,4 @@
-package pl.cieszk.findyourevent.ui
+package pl.cieszk.findyourevent.ui.auth
 
 import android.content.Context
 import android.widget.Toast
@@ -19,22 +19,13 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
+import pl.cieszk.findyourevent.utils.signIn
 
 @Composable
 fun LoginScreen(navController: NavController, auth: FirebaseAuth) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val context = LocalContext.current
-
-    fun signIn(email: String, password: String, context: Context) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                navController.navigate("home")
-            } else {
-                Toast.makeText(context, "Wrong credentials", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     Column(
         modifier = Modifier
@@ -66,7 +57,9 @@ fun LoginScreen(navController: NavController, auth: FirebaseAuth) {
             signIn(
                 email = email.value,
                 password = password.value,
-                context = context
+                context = context,
+                auth = auth,
+                navController= navController
             )
         }) {
             Text("Login")
