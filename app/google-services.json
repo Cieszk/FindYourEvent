@@ -12,7 +12,12 @@
           "package_name": "pl.cieszk.findyourevent"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "261009118350-ath0mentrevif67mgk1dvic3r0gq2vlb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDFvKUTSWiJiNKbPGRBLKfQrGxsUPfqw2w"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261009118350-ath0mentrevif67mgk1dvic3r0gq2vlb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
