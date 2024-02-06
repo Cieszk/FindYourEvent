@@ -1,38 +1,45 @@
 package pl.cieszk.findyourevent.model.service.impl
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import pl.cieszk.findyourevent.model.service.User
+import kotlinx.coroutines.tasks.await
+import pl.cieszk.findyourevent.model.User
 import pl.cieszk.findyourevent.model.service.module.AccountService
 import javax.inject.Inject
 
 class AccountServiceImpl @Inject constructor() : AccountService {
     override val currentUser: Flow<User?>
         get() = callbackFlow {
-            //TODO
+            val listener = FirebaseAuth.AuthStateListener { auth ->
+                this.trySend(auth.currentUser?.let { User(it.uid) })
+            }
+            Firebase.auth.addAuthStateListener(listener)
+            awaitClose { Firebase.auth.removeAuthStateListener(listener) }
         }
     override val currentUserId: String
         get() = Firebase.auth.currentUser?.uid.orEmpty()
 
     override fun hasUser(): Boolean {
-        TODO("Not yet implemented")
+        return Firebase.auth.currentUser != null
     }
 
     override suspend fun signIn(email: String, password: String) {
-        TODO("Not yet implemented")
+        Firebase.auth.signInWithEmailAndPassword(email, password).await()
     }
 
     override suspend fun signUp(email: String, password: String) {
-        TODO("Not yet implemented")
+        Firebase.auth.createUserWithEmailAndPassword(email, password)
     }
 
     override suspend fun signOut() {
-        TODO("Not yet implemented")
+        Firebase.auth.signOut()
     }
 
     override suspend fun deleteAccount() {
-        TODO("Not yet implemented")
+        Firebase.auth.currentUser!!.delete().await()
     }
 }

@@ -1,7 +1,7 @@
 package pl.cieszk.findyourevent.model.service.module
 
 import kotlinx.coroutines.flow.Flow
-import pl.cieszk.findyourevent.model.service.User
+import pl.cieszk.findyourevent.model.User
 
 interface AccountService {
     val currentUser: Flow<User?>
