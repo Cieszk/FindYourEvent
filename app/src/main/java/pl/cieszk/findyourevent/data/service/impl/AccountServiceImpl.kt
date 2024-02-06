@@ -1,4 +1,4 @@
-package pl.cieszk.findyourevent.model.service.impl
+package pl.cieszk.findyourevent.data.service.impl
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -7,8 +7,8 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
-import pl.cieszk.findyourevent.model.User
-import pl.cieszk.findyourevent.model.service.module.AccountService
+import pl.cieszk.findyourevent.data.model.User
+import pl.cieszk.findyourevent.data.service.module.AccountService
 import javax.inject.Inject
 
 class AccountServiceImpl @Inject constructor() : AccountService {

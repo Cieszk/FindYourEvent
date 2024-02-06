@@ -2,8 +2,8 @@ package pl.cieszk.findyourevent.screens.main_screen
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import pl.cieszk.findyourevent.SPLASH_SCREEN
-import pl.cieszk.findyourevent.model.service.module.AccountService
-import pl.cieszk.findyourevent.model.service.module.StorageService
+import pl.cieszk.findyourevent.data.service.module.AccountService
+import pl.cieszk.findyourevent.data.service.module.StorageService
 import pl.cieszk.findyourevent.screens.EventAppViewModel
 import javax.inject.Inject
 

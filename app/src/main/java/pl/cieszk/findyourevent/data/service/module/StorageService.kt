@@ -1,7 +1,7 @@
-package pl.cieszk.findyourevent.model.service.module
+package pl.cieszk.findyourevent.data.service.module
 
 import kotlinx.coroutines.flow.Flow
-import pl.cieszk.findyourevent.model.Event
+import pl.cieszk.findyourevent.data.model.Event
 
 interface StorageService {
     val events: Flow<List<Event>>
