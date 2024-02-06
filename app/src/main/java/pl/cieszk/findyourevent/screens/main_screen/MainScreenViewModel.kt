@@ -16,8 +16,9 @@ class MainScreenViewModel @Inject constructor(
 
     fun initialize(restartApp: (String) -> Unit) {
         launchCatching {
-            accountService.currentUser.collect { user ->
-                if (user == null) restartApp(SPLASH_SCREEN)
+            val userId = accountService.currentUserId
+            if (userId.isEmpty()) {
+                restartApp(SPLASH_SCREEN)
             }
         }
     }

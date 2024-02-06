@@ -2,4 +2,8 @@
     <string name="app_name">Find Your Event</string>
     <string name="facebook_application_id" translatable="false">fbfind-your-event-2aa11</string>
     <string name="web_client_id" translatable="false">261009118350-ath0mentrevif67mgk1dvic3r0gq2vlb.apps.googleusercontent.com</string>
+    <string name="email" translatable="true">e-mail</string>
+    <string name="password" translatable="true">Password</string>
+    <string name="confirm_password" translatable="true">Confirm Password</string>
+    <string name="sign_up" translatable="true">Sign Up</string>
 </resources>
