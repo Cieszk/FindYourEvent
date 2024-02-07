@@ -1,6 +1,6 @@
 package pl.cieszk.findyourevent.data.service.impl
 
-import android.provider.ContactsContract
+import android.annotation.SuppressLint
 import com.google.firebase.firestore.dataObjects
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -17,6 +17,7 @@ class StorageServiceImpl @Inject constructor(private val auth: AccountService) :
 
     @OptIn(ExperimentalCoroutinesApi::class)
     override val events: Flow<List<Event>>
+        @SuppressLint("RestrictedApi")
         get() =
             auth.currentUser.flatMapLatest { event ->
                 Firebase.firestore
@@ -25,29 +26,29 @@ class StorageServiceImpl @Inject constructor(private val auth: AccountService) :
                     .dataObjects()
             }
 
-    override suspend fun createNote(event: Event) {
-        val noteWithUserId = event.copy(userId = auth.currentUserId)
+    override suspend fun createEvent(event: Event) {
+        val eventWithUserId = event.copy(userId = auth.currentUserId)
         Firebase.firestore
             .collection(EVENT_COLLECTION)
-            .add(noteWithUserId).await()
+            .add(eventWithUserId).await()
     }
 
-    override suspend fun readNote(noteId: String): ContactsContract.CommonDataKinds.Note? {
+    override suspend fun readEvent(eventId: String): Event? {
         return Firebase.firestore
             .collection(EVENT_COLLECTION)
-            .document(noteId).get().await().toObject()
+            .document(eventId).get().await().toObject(Event::class.java)
     }
 
-    override suspend fun updateNote(event: Event) {
+    override suspend fun updateEvent(event: Event) {
         Firebase.firestore
             .collection(EVENT_COLLECTION)
-            .document(note.id).set(note).await()
+            .document(event.id).set(event).await()
     }
 
-    override suspend fun deleteNote(noteId: String) {
+    override suspend fun deleteEvent(eventId: String) {
         Firebase.firestore
             .collection(EVENT_COLLECTION)
-            .document(noteId).delete().await()
+            .document(eventId).delete().await()
     }
 
     companion object {
