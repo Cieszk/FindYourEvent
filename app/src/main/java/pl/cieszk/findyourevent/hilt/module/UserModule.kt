@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import pl.cieszk.findyourevent.data.repositories.impl.UserRepositoryImpl
 import pl.cieszk.findyourevent.data.repositories.module.UserRepository
+import pl.cieszk.findyourevent.data.service.impl.StorageServiceImpl
 import pl.cieszk.findyourevent.data.service.module.StorageService
 import javax.inject.Singleton
 
@@ -24,6 +25,8 @@ object UserModule {
     @Provides
     @Singleton
     fun provideStorageService(
-
-    )
+        storageServiceImpl: StorageServiceImpl
+    ) : StorageService {
+        return storageServiceImpl
+    }
 }
