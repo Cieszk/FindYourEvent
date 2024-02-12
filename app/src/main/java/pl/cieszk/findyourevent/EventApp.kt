@@ -50,7 +50,8 @@ fun NavGraphBuilder.eventGraph(appState: EventAppState) {
     composable(MAIN_APP_SCREEN) {
         MainScreen(
             restartApp = { route -> appState.clearAndNavigate(route) },
-            openScreen = { route -> appState.navigate(route) }
+            openScreen = { route -> appState.navigate(route) },
+            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) }
         )
     }
 

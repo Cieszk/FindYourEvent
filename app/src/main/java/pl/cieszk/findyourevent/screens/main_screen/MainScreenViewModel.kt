@@ -1,6 +1,8 @@
 package pl.cieszk.findyourevent.screens.main_screen
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import pl.cieszk.findyourevent.MAIN_APP_SCREEN
+import pl.cieszk.findyourevent.SIGN_IN_SCREEN
 import pl.cieszk.findyourevent.SPLASH_SCREEN
 import pl.cieszk.findyourevent.data.service.module.AccountService
 import pl.cieszk.findyourevent.data.service.module.StorageService
@@ -21,5 +23,13 @@ class MainScreenViewModel @Inject constructor(
                 restartApp(SPLASH_SCREEN)
             }
         }
+    }
+
+    suspend fun onSignOutClick(openAndPopUp: (String, String) -> Unit) {
+        launchCatching {
+            accountService.signOut()
+            openAndPopUp(SIGN_IN_SCREEN, MAIN_APP_SCREEN)
+        }
+
     }
 }
