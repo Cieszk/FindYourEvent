@@ -1,8 +1,8 @@
 package pl.cieszk.findyourevent.data.repositories.module
 
-import com.firebase.ui.auth.data.model.User
 import kotlinx.coroutines.flow.Flow
 import pl.cieszk.findyourevent.common.Result
+import pl.cieszk.findyourevent.data.model.User
 
 interface UserRepository {
     suspend fun addUser(

@@ -1,7 +1,7 @@
 package pl.cieszk.findyourevent.data.repositories.impl
 
 import android.util.Log
-import com.firebase.ui.auth.data.model.User
+import pl.cieszk.findyourevent.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,7 +22,7 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun addUser(username: String, city: String, country: String, email: String): Result<Unit> = withContext(ioDispatcher) {
         try {
             val uid = FirebaseAuth.getInstance().currentUser?.uid ?: throw IllegalStateException("User not logged in")
-            val user = pl.cieszk.findyourevent.data.model.User(
+            val user = User(
                 id = uid,
                 username = username,
                 city = city,

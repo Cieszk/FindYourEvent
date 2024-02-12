@@ -29,7 +29,19 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun updateConfirmPassword(newConfirmPassword: String) {
-        password.value = newConfirmPassword
+        confirmPassword.value = newConfirmPassword
+    }
+
+    fun updateUsername(newUsername: String) {
+        username.value = newUsername
+    }
+
+    fun updateCity(newCity: String) {
+        city.value = newCity
+    }
+
+    fun updateCountry(newCountry: String) {
+        country.value = newCountry
     }
 
     fun onSignUpClick(openAndPopUp: (String, String) -> Unit) {
@@ -37,7 +49,13 @@ class SignUpViewModel @Inject constructor(
             if (password.value != confirmPassword.value) {
                 throw Exception("Passwords do not mach")
             }
-            accountService.signUp(email.value, password.value, username.value, city.value, country.value)
+            accountService.signUp(
+                email.value,
+                password.value,
+                username.value,
+                city.value,
+                country.value
+            )
             openAndPopUp(MAIN_APP_SCREEN, SIGN_UP_SCREEN)
         }
     }

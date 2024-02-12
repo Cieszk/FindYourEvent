@@ -14,6 +14,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -77,6 +79,26 @@ fun SignUpScreen(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),
+            value = username.value,
+            onValueChange = { viewModel.updateUsername(it) },
+            placeholder = { Text(stringResource(R.string.username)) },
+            leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription = "username") }
+        )
+
+        OutlinedTextField(
+            singleLine = true,
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(16.dp, 4.dp)
+                .border(
+                    BorderStroke(width = 2.dp, color = Purple40),
+                    shape = RoundedCornerShape(50)
+                ),
+            colors = TextFieldDefaults.textFieldColors(
+                containerColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
             value = email.value,
             onValueChange = { viewModel.updateEmail(it) },
             placeholder = { Text(stringResource(R.string.email)) },
@@ -100,7 +122,7 @@ fun SignUpScreen(
             value = password.value,
             onValueChange = { viewModel.updatePassword(it) },
             placeholder = { Text(stringResource(R.string.password)) },
-            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Email") },
+            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Password") },
             visualTransformation = PasswordVisualTransformation()
         )
 
@@ -121,9 +143,50 @@ fun SignUpScreen(
             value = confirmPassword.value,
             onValueChange = { viewModel.updateConfirmPassword(it) },
             placeholder = { Text(stringResource(R.string.confirm_password)) },
-            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Email") },
+            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Confirm Password") },
             visualTransformation = PasswordVisualTransformation()
         )
+
+        OutlinedTextField(
+            singleLine = true,
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(16.dp, 4.dp)
+                .border(
+                    BorderStroke(width = 2.dp, color = Purple40),
+                    shape = RoundedCornerShape(50)
+                ),
+            colors = TextFieldDefaults.textFieldColors(
+                containerColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            value = city.value,
+            onValueChange = { viewModel.updateCity(it) },
+            placeholder = { Text(stringResource(R.string.city)) },
+            leadingIcon = { Icon(imageVector = Icons.Default.Place, contentDescription = "City") }
+        )
+
+        OutlinedTextField(
+            singleLine = true,
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(16.dp, 4.dp)
+                .border(
+                    BorderStroke(width = 2.dp, color = Purple40),
+                    shape = RoundedCornerShape(50)
+                ),
+            colors = TextFieldDefaults.textFieldColors(
+                containerColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            value = country.value,
+            onValueChange = { viewModel.updateCountry(it) },
+            placeholder = { Text(stringResource(R.string.country)) },
+            leadingIcon = { Icon(imageVector = Icons.Default.Place, contentDescription = "Country") }
+        )
+
 
         Spacer(modifier = Modifier
             .fillMaxWidth()

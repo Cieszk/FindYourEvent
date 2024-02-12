@@ -6,4 +6,7 @@
     <string name="password" translatable="true">Password</string>
     <string name="confirm_password" translatable="true">Confirm Password</string>
     <string name="sign_up" translatable="true">Sign Up</string>
+    <string name="username">username</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
 </resources>
