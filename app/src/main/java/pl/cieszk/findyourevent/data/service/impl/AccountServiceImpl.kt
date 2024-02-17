@@ -15,7 +15,8 @@ import pl.cieszk.findyourevent.data.service.module.AccountService
 import javax.inject.Inject
 
 class AccountServiceImpl @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+
 ) : AccountService {
     override val currentUser: Flow<User?>
         @SuppressLint("RestrictedApi")

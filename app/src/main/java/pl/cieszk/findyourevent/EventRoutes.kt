@@ -4,6 +4,7 @@ const val SIGN_IN_SCREEN = "SignInScreen"
 const val SIGN_UP_SCREEN = "SignUpScreen"
 const val MAIN_APP_SCREEN = "MainScreen"
 const val SPLASH_SCREEN = "SplashScreen"
+const val EVENT_SCREEN_ADD = "EventAddScreen"
 const val EVENT_SCREEN = "EventScreen"
 
 

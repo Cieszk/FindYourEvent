@@ -1,5 +1,7 @@
 package pl.cieszk.findyourevent
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -15,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import pl.cieszk.findyourevent.screens.MainScreen
 import pl.cieszk.findyourevent.screens.event.EventScreen
+import pl.cieszk.findyourevent.screens.event_add.EventAddScreen
 import pl.cieszk.findyourevent.screens.sign_up.SignUpScreen
 import pl.cieszk.findyourevent.screens.sing_in.SignInScreen
 import pl.cieszk.findyourevent.screens.splash.SplashScreen
@@ -46,6 +49,7 @@ fun rememberAppState(navController: NavHostController = rememberNavController())
         EventAppState(navController)
     }
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.eventGraph(appState: EventAppState) {
     composable(MAIN_APP_SCREEN) {
         MainScreen(
@@ -60,7 +64,7 @@ fun NavGraphBuilder.eventGraph(appState: EventAppState) {
         arguments = listOf(navArgument(EVENT_ID) { defaultValue = EVENT_DEFAULT_ID })
     ) {
         EventScreen(
-            noteId = it.arguments?.getString(EVENT_ID) ?: EVENT_DEFAULT_ID,
+            eventId = it.arguments?.getString(EVENT_ID) ?: EVENT_DEFAULT_ID,
             popUpScreen = { appState.popUp() },
             restartApp = { route -> appState.clearAndNavigate(route) }
         )
@@ -76,5 +80,9 @@ fun NavGraphBuilder.eventGraph(appState: EventAppState) {
 
     composable(SPLASH_SCREEN) {
         SplashScreen(openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) })
+    }
+
+    composable(EVENT_SCREEN_ADD) {
+        EventAddScreen(restartApp = { route -> appState.clearAndNavigate(route) }, openScreen = { route -> appState.navigate(route) } )
     }
 }

@@ -1,9 +1,12 @@
 package pl.cieszk.findyourevent.screens.main_screen
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import pl.cieszk.findyourevent.MAIN_APP_SCREEN
-import pl.cieszk.findyourevent.SIGN_IN_SCREEN
+import pl.cieszk.findyourevent.EVENT_DEFAULT_ID
+import pl.cieszk.findyourevent.EVENT_ID
+import pl.cieszk.findyourevent.EVENT_SCREEN
+import pl.cieszk.findyourevent.EVENT_SCREEN_ADD
 import pl.cieszk.findyourevent.SPLASH_SCREEN
+import pl.cieszk.findyourevent.data.model.Event
 import pl.cieszk.findyourevent.data.service.module.AccountService
 import pl.cieszk.findyourevent.data.service.module.StorageService
 import pl.cieszk.findyourevent.screens.EventAppViewModel
@@ -24,12 +27,16 @@ class MainScreenViewModel @Inject constructor(
             }
         }
     }
-
-    suspend fun onSignOutClick(openAndPopUp: (String, String) -> Unit) {
+    fun onSignOutClick() {
         launchCatching {
             accountService.signOut()
-            openAndPopUp(SIGN_IN_SCREEN, MAIN_APP_SCREEN)
         }
+    }
+    fun onAddClick(openScreen: (String) -> Unit) {
+        openScreen(EVENT_SCREEN_ADD)
+    }
 
+    fun onEventClick(openScreen: (String) -> Unit, event: Event) {
+        openScreen("$EVENT_SCREEN?$EVENT_ID=${event.id}")
     }
 }
