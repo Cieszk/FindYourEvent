@@ -67,9 +67,8 @@ fun MainScreen(
             }
         }
     ) {
-        val events by viewModel.events.collectAsState(emptyList())
+        val events by viewModel.events.collectAsState(initial = emptyList())
         var showExitAppDialog by remember { mutableStateOf(false) }
-        var showRemoveAccDialog by remember { mutableStateOf(false) }
 
         Column(modifier = Modifier
             .fillMaxWidth()

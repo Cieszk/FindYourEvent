@@ -4,6 +4,9 @@ import android.util.Log
 import pl.cieszk.findyourevent.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
@@ -30,10 +33,7 @@ class UserRepositoryImpl @Inject constructor(
                 email = email
             )
 
-            val result = eventDatabase.collection(COLLECTION_PATH_NAME)
-                .document(uid)
-                .set(user)
-                .await()
+            Firebase.firestore.collection(USER_COLLECTION).add(user)
 
             Result.Success(Unit)
         } catch (e: Exception) {
@@ -53,4 +53,8 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun updateUser(user: User): Flow<User> {
         TODO("Not yet implemented")
     }
+    companion object {
+        private const val USER_COLLECTION = "users"
+    }
 }
+

@@ -9,10 +9,10 @@ data class Event (
     var userId: String = "",
     val eventDate: Date,
     val creationDate: Date = Date(),
-    val title: String,
-    val description: String,
-    val city: String,
-    val country: String
+    var title: String,
+    var description: String,
+    var city: String,
+    var country: String
 ) {
     constructor() : this(
         "",
